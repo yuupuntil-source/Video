@@ -1,1 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>🎬 我的影片網站</title>
 
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #111;
+  color: #fff;
+  text-align: center;
+}
+
+h1 {
+  margin: 20px;
+}
+
+.player-container {
+  max-width: 800px;
+  margin: auto;
+}
+
+video {
+  width: 100%;
+  border-radius: 10px;
+  background: black;
+}
+
+.video-list {
+  margin-top: 20px;
+}
+
+.video-btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  background: #222;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: 0.2s;
+}
+
+.video-btn:hover {
+  background: #444;
+}
+
+.video-btn.active {
+  background: #00c3ff;
+  color: black;
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🎬 我的影片播放網站</h1>
+
+<div class="player-container">
+  <video id="player" controls></video>
+
+  <div class="video-list">
+    <button class="video-btn" onclick="playVideo(this, 'video1.mp4')">影片 1</button>
+    <button class="video-btn" onclick="playVideo(this, 'video2.mp4')">影片 2</button>
+    <button class="video-btn" onclick="playVideo(this, 'video3.mp4')">影片 3</button>
+  </div>
+</div>
+
+<script>
+const player = document.getElementById("player");
+
+// 預設播放第一支
+window.onload = () => {
+  const firstBtn = document.querySelector(".video-btn");
+  playVideo(firstBtn, 'video1.mp4');
+};
+
+function playVideo(button, file) {
+  // 切換影片
+  player.src = "videos/" + file;
+  player.load();
+  player.play();
+
+  // 按鈕高亮
+  document.querySelectorAll(".video-btn").forEach(btn => {
+    btn.classList.remove("active");
+  });
+  button.classList.add("active");
+}
+</script>
+
+</body>
+</html>
